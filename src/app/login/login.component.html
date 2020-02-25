@@ -1,0 +1,93 @@
+<div class="container">
+	<div class="d-flex justify-content-center h-100">
+
+
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm-6 pr-0">
+        <button class="btn btn-block square" (click)="toSignupPage()" [ngClass]="{'btn-primary': !atLoginPage,'btn-secondary': atLoginPage}">Sign Up</button>
+      </div> 
+      <div class="col-sm-6 pl-0">
+        <button class="btn btn-block square" (click)="toLoginPage()" [ngClass]="{'btn-primary': atLoginPage,'btn-secondary': !atLoginPage}">Log In</button>
+      </div> 
+    </div>
+
+    <ng-container *ngIf="!atLoginPage"> 
+    <div class="row mt-2">
+      <div class="col-sm-12 text-center">
+        <h3>Sign Up For Free</h3>
+      </div>
+    </div>
+
+    <form [formGroup]="signupForm">
+      <div class="form-group row">
+        <div class="col-sm-6">
+          <input type="text" placeholder="First Name*" class="form-control" formControlName="firstName">
+          <div class="invalid-feedback d-block" *ngIf="(signupForm.get('firstName').dirty || signupForm.get('firstName').touched) && signupForm.get('firstName').hasError('required')">First name is required</div>
+        </div>  
+        <div class="col-sm-6">
+          <input type="text" placeholder="Last Name*" class="form-control" formControlName="lastName">
+          <div class="invalid-feedback d-block" *ngIf="(signupForm.get('lastName').dirty || signupForm.get('lastName').touched) && signupForm.get('lastName').hasError('required')">Last name is required</div>
+        </div> 
+      </div>  
+
+      <div class="form-group row">
+        <div class="col-sm-12">
+          <input type="text" placeholder="Email*" class="form-control" formControlName="email">
+          <div class="invalid-feedback d-block" *ngIf="(signupForm.get('email').dirty || signupForm.get('email').touched) && signupForm.get('email').invalid">Email is invalid</div>
+        </div>     
+      </div> 
+
+      <div class="form-group row">
+        <div class="col-sm-12">
+          <input type="password" placeholder="Set a password*" class="form-control" formControlName="password">  
+          <div class="invalid-feedback d-block" *ngIf="(signupForm.get('password').dirty || signupForm.get('password').touched) && signupForm.get('password').hasError('required')">Password is required</div>
+        </div>        
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <button class="btn btn-success btn-block square btn-lg" [disabled]="signupForm.get('password').invalid || signupForm.get('email').invalid || signupForm.get('lastName').invalid || signupForm.get('firstName').invalid" ><b>GET STARTED</b></button>
+        </div>
+      </div> 
+    </form>
+    </ng-container>
+
+    <ng-container *ngIf="atLoginPage"> 
+    <div class="row mt-2">
+      <div class="col-sm-12 text-center">
+        <h3>Welcome Back!</h3>
+      </div>
+    </div>
+
+    <form [formGroup]="loginForm">
+      <div class="form-group row">
+        <div class="col-sm-12">
+          <input type="text" placeholder="Email Address*" class="form-control" formControlName="loginEmail">
+          <div class="invalid-feedback d-block" *ngIf="(loginForm.get('loginEmail').dirty || loginForm.get('loginEmail').touched) && loginForm.get('loginEmail').invalid">Email is invalid</div>
+        </div>  
+      </div>  
+
+      <div class="form-group row">
+        <div class="col-sm-12">
+          <input type="password" placeholder="Password*" class="form-control" formControlName="loginPassword">  
+          <div class="invalid-feedback d-block" *ngIf="(loginForm.get('loginPassword').dirty || loginForm.get('loginPassword').touched) && loginForm.get('loginPassword').hasError('required')">Password is required</div>
+        </div>        
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <button class="btn btn-success btn-block square btn-lg" [disabled]="loginForm.get('loginPassword').invalid || loginForm.get('loginEmail').invalid" ><b>LOG IN</b></button>
+        </div>
+      </div> 
+    </form>
+    </ng-container>
+
+
+  </div>  
+</div>
+
+
+</div>
+</div>
